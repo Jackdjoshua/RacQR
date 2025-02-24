@@ -1,0 +1,25 @@
+import { useState } from "react";
+import QRCode from "qrcode.react";
+
+export default function QRGenerator() {
+  const [text, setText] = useState("");
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <div className="bg-white shadow-lg rounded-2xl p-8 max-w-lg text-center">
+        <h1 className="text-3xl font-bold mb-4">Generate Your QR Code</h1>
+        <p className="text-gray-600 mb-6">Enter a URL or text below to generate a QR code.</p>
+        <input
+          type="text"
+          placeholder="Enter text or URL"
+          className="w-full p-2 border rounded-lg mb-4"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <div className="bg-gray-200 p-4 rounded-lg mt-4">
+          {text && <QRCode value={text} size={150} />}
+        </div>
+      </div>
+    </div>
+  );
+}
